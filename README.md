@@ -21,7 +21,7 @@ https://developers.google.com/calendar/quickstart/python?hl=ru
 
 Ивенты попадают в те или иные списки, которые в конечном итоге должны все попасть в Done.md
 
-Скрипты add заполняют лист To_do.md и Shopping_list.md с проектов где есть пункты без дат:
+Скрипт add парсит Проекты и заполняет лист To_do.md и Shopping_list.md где есть пункты без дат:
 
 - [ ] ...
 - [ ] Купить ...
@@ -32,3 +32,6 @@ https://developers.google.com/calendar/quickstart/python?hl=ru
 - [x] ...
 
 и помещает их в Done.md  
+
+Хранить все можно в приватном репо на GitHub для синхронизации со смартфоном.
+Скрипты можно запускать на смартфоне через Termux. 
