@@ -32,3 +32,6 @@ https://developers.google.com/calendar/quickstart/python?hl=ru
 - [x] ...
 
 и помещает их в Done.md  
+
+Хранить все можно в приватном репо на GitHub для синхронизации со смартфоном.
+Скрипты можно запускать на смартфоне через Termux. 
