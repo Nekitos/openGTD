@@ -10,7 +10,7 @@ https://developers.google.com/calendar/quickstart/python?hl=ru
 
 `pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib`
 
-Запустить `CalendarApi.auth()` и сделать инструкциям.
+Запустить `CalendarApi.auth()` и следовать инструкциям.
 
 Новая задача попадает в Input.md. 
 Разбирая корзину, для каждого эвента последовательно отвечая на вопросы:
