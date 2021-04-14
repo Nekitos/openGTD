@@ -9,13 +9,12 @@ class CalendarApi:
     TOKEN_JSON = 'credentials.json'
     TOKEN_PKL = os.path.abspath(os.path.join(os.path.dirname(__file__), 'token.pkl'))
     SCOPE = 'https://www.googleapis.com/auth/calendar'
+    CALENDAR_ID = 'yoursemail@gmail.com'
 
     def __init__(self):
         with open(CalendarApi.TOKEN_PKL, 'rb') as token:
             creds = pickle.load(token)
         self.service = build('calendar', 'v3', credentials=creds)
-        result = self.service.calendarList().list().execute()
-        self.calendar_id = result['items'][0]['id']
         self.timeZone = 'Europe/Samara'
 
     @staticmethod
@@ -23,11 +22,11 @@ class CalendarApi:
         scopes = [CalendarApi.SCOPE]
         flow = InstalledAppFlow.from_client_secrets_file(CalendarApi.TOKEN_JSON, scopes=scopes)
         credentials = flow.run_console()
-        with open(CalendarApi.TOKEN_PKL, 'rb') as token:
+        with open(CalendarApi.TOKEN_PKL, 'wb') as token:
             pickle.dump(credentials, token)
 
     def get_calendar_events(self) -> list:
-        result = self.service.events().list(calendarId=self.calendar_id, timeZone=self.timeZone).execute()
+        result = self.service.events().list(calendarId=self.CALENDAR_ID, timeZone=self.timeZone).execute()
 
         return result['items']
 
@@ -64,13 +63,13 @@ class CalendarApi:
             },
         }
 
-        self.service.events().insert(calendarId=self.calendar_id, body=event).execute()
+        self.service.events().insert(calendarId=self.CALENDAR_ID, body=event).execute()
 
     def delete_event(self, event_summary: str):
         events = self.get_calendar_events()
         for event in events:
             if event['summary'].find(event_summary.strip()) != -1:
-                self.service.events().delete(calendarId=self.calendar_id, eventId=event['id']).execute()
+                self.service.events().delete(calendarId=self.CALENDAR_ID, eventId=event['id']).execute()
 
 
 if __name__ == '__main__':

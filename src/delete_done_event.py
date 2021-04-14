@@ -31,6 +31,7 @@ def delete_done_event(directory):
 
     return result
 
+
 def add_to_done(evens: list):
     with open(DONE_FILE_PATH, 'r') as f:
         lines = f.readlines()

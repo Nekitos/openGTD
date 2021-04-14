@@ -1,12 +1,20 @@
-# GTD
+GTD
+======
+## Summary
+Это моя реализация системы GTD, чтобы хранить всю историю в приватном репозитории
+под системой git, и не привязываться к какой-то одной платформе (обычно платной) GTD. 
+
+## Installation
+clone this repository:
+
+`git clone https://github.com/Nekitos/openGTD.git`
 
 Читаем 
-
 https://developers.google.com/calendar/quickstart/python?hl=ru
 
 получаем credentials.json, кладем в папку src. 
 
-Уснановить:
+Установить:
 
 `pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib`
 
