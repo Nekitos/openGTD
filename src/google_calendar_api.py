@@ -18,7 +18,7 @@ class CalendarApi:
         self.timeZone = 'Europe/Samara'
 
     @staticmethod
-    def auth():
+    def auth() -> None:
         scopes = [CalendarApi.SCOPE]
         flow = InstalledAppFlow.from_client_secrets_file(CalendarApi.TOKEN_JSON, scopes=scopes)
         credentials = flow.run_console()
@@ -65,7 +65,7 @@ class CalendarApi:
 
         self.service.events().insert(calendarId=self.CALENDAR_ID, body=event).execute()
 
-    def delete_event(self, event_summary: str):
+    def delete_event(self, event_summary: str) -> None:
         events = self.get_calendar_events()
         for event in events:
             if event['summary'].find(event_summary.strip()) != -1:

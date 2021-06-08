@@ -16,7 +16,7 @@ PATTERN_EVENT_TITLE_FOR_BUY = r'(?<=\] Купить).*'
 
 
 # todo деелать регулярки - добваить часы, минуты, продолжительность и возможность варьировать количесво цифр
-def pars_dir_and_get_all_event(directory):
+def pars_dir_and_get_all_event(directory) -> tuple:
     calendar = []
     todo = []
     buying = []
@@ -70,7 +70,7 @@ def pars_dir_and_get_all_event(directory):
     return calendar, todo, buying
 
 
-def mark_done_event(delete_todo, pattern):
+def mark_done_event(delete_todo, pattern) -> list:
     done = []
     for file in os.listdir(delete_done_event.PROJECTS_DIR):  # todo можно выделить перебор в методе-генераторе
         change_condition = False
@@ -94,7 +94,7 @@ def mark_done_event(delete_todo, pattern):
     return done
 
 
-def add_in_calendar(projects: list, calendar_api: CalendarApi):
+def add_in_calendar(projects: list, calendar_api: CalendarApi) -> None:
     if len(projects) != 0:
         calendar_events = calendar_api.get_calendar_events()
         for project in projects:
@@ -117,7 +117,7 @@ def is_set_event(summary: str, events: list) -> bool:
     return result
 
 
-def add_in_file(event_list: list, file_path):
+def add_in_file(event_list: list, file_path) -> None:
     with open(file_path, 'r') as f:
         todo_lines = f.readlines()
     with open(file_path, 'a') as f:
@@ -129,7 +129,7 @@ def add_in_file(event_list: list, file_path):
                     print(f"add {file_path[-5:]}: {event.strip()}")
 
 
-def get_mark_event(file_path):
+def get_mark_event(file_path) -> list:
     mark_event = []
     with open(file_path, 'r') as f:
         lines = f.readlines()
@@ -140,7 +140,7 @@ def get_mark_event(file_path):
     return mark_event
 
 
-def mark_add_event(file_path: str, calendar_events: list):
+def mark_add_event(file_path: str, calendar_events: list) -> None:
     if len(calendar_events) != 0:
         with open(file_path, 'r') as f:
             lines = f.readlines()
@@ -157,7 +157,7 @@ def mark_add_event(file_path: str, calendar_events: list):
                     f.write(line)
 
 
-def get_all_add_events_in_file(directory):
+def get_all_add_events_in_file(directory) -> list:
     result = []
     for file in os.listdir(directory):
         file_path = f"{directory}/{file}"
@@ -166,7 +166,7 @@ def get_all_add_events_in_file(directory):
     return result
 
 
-def get_add_event_in_file(file_path):
+def get_add_event_in_file(file_path) -> list:
     result = []
     with open(file_path, 'r') as f:
         lines = f.readlines()
@@ -176,14 +176,15 @@ def get_add_event_in_file(file_path):
     return result
 
 
-def get_not_valid_calendar_events(calendar_api: CalendarApi):
+def get_not_valid_calendar_events(calendar_api: CalendarApi) -> list:
     result = []
     file_events = get_all_add_events_in_file(delete_done_event.PROJECTS_DIR)
-    calendar_events = calendar_api.get_calendar_events()
-    for event in file_events:
-        for match in re.findall(PATTERN_EVENT_TITLE_WITH_DATE, event):
-            if not is_set_event(match, calendar_events):
-                result.append(event)
+    if len(file_events) != 0:
+        calendar_events = calendar_api.get_calendar_events()
+        for event in file_events:
+            for match in re.findall(PATTERN_EVENT_TITLE_WITH_DATE, event):
+                if not is_set_event(match, calendar_events):
+                    result.append(event)
 
     return result
 

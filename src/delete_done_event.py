@@ -9,7 +9,7 @@ PROJECTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '3.
 DONE_FILE_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Done.md'))
 
 
-def delete_in_file(file_path):
+def delete_in_file(file_path: str) -> list:
     result = []
     with open(file_path, 'r') as f:
         lines = f.readlines()
@@ -23,7 +23,7 @@ def delete_in_file(file_path):
     return result
 
 
-def delete_done_event(directory):
+def delete_done_event(directory: str) -> list:
     result = []
     for file in os.listdir(directory):
         file_path = f"{directory}/{file}"
@@ -32,7 +32,7 @@ def delete_done_event(directory):
     return result
 
 
-def add_to_done(evens: list):
+def add_to_done(evens: list) -> None:
     with open(DONE_FILE_PATH, 'r') as f:
         lines = f.readlines()
     with open(DONE_FILE_PATH, 'a') as f:
@@ -42,8 +42,7 @@ def add_to_done(evens: list):
                 print(f"add done: {event}")
 
 
-# todo можно сделать и проверку на присутствие даты, чтобы лишний раз календарь не дергать
-def delete_in_calendar(lines_list):
+def delete_in_calendar(lines_list: list) -> None:
     if len(lines_list) != 0:
         calendar_api = CalendarApi()
         for line in lines_list:
