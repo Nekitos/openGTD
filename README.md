@@ -18,7 +18,7 @@ https://developers.google.com/calendar/quickstart/python?hl=ru
 
 `pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib`
 
-Запустить `CalendarApi.auth()` и следовать инструкциям.
+Запустить `google_calendar_api.py` и следовать инструкциям.
 
 Новая задача попадает в Input.md. 
 Разбирая корзину, для каждого эвента последовательно отвечая на вопросы:
@@ -37,7 +37,7 @@ https://developers.google.com/calendar/quickstart/python?hl=ru
 
 Если у пункта есть дата `01.01.2021`, то создается событие в гугл календаре.
 
-Скрипт delete удаляет из списокв и календаря выполненные события 
+Скрипт delete удаляет из списоков и календаря выполненные события 
 - [x] ...
 
 и помещает их в Done.md  
